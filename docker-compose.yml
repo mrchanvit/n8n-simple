@@ -1,0 +1,18 @@
+version: "3"
+services:
+  n8n:
+    image: n8nio/n8n
+    restart: always
+    ports:
+      - "80:5678"    
+    environment:
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=admin
+      - N8N_BASIC_AUTH_PASSWORD=12345678
+      - N8N_HOST=${IP_ADDRESS}
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=http
+      - NODE_ENV=production
+      - WEBHOOK_TUNNEL_URL=http://${IP_ADDRESS}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
